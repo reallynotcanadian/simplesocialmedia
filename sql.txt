@@ -1,0 +1,23 @@
+CREATE DATABASE social;
+USE social;
+CREATE TABLE users (
+    username VARCHAR(18) PRIMARY KEY,
+    nome VARCHAR(10),
+    cognome VARCHAR(10),
+    pass VARCHAR(16)
+    );
+CREATE TABLE posts (
+    postID INT AUTO_INCREMENT PRIMARY KEY,
+    auth VARCHAR(18),
+    contenuto VARCHAR(500),
+    FOREIGN KEY posts(auth) REFERENCES users(username)
+    );
+CREATE TABLE messages (
+    id_messages INT PRIMARY KEY AUTO_INCREMENT,
+    sender VARCHAR(30),
+    receiver VARCHAR(30),
+    message_text VARCHAR(250) NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender) REFERENCES users(username),
+    FOREIGN KEY (receiver) REFERENCES users(username)
+);
